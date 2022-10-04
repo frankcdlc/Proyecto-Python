@@ -105,3 +105,32 @@ def create_list_routes() -> List[Route]:
         routes.append(obj_route)
 
     return routes
+
+def create_sales_and_incomes_tickets(route: Route):
+  # Número de asientos económicos vendidos
+  sales_economics = route.get_rand_sales_economy()
+  # Número de asientos premium vendidos  
+  sales_premium = route.get_rand_sales_premium()
+  # Número de total de asientos vendidos
+  sales = sales_economics + sales_premium
+  # Ingreso por venta de pasajes económicos por vuelo
+  income_economics_sales: float = round(sales_economics * route.price_economic, 2)
+  # ingreso por venta de pasajes premium por vuelo
+  income_premium_sales: float = round(sales_premium * route.price_premium, 2)
+  # Ingreso total por vuelo
+  income_total = round(income_economics_sales + income_premium_sales, 2)
+  IGV_total = round(route.price_economic_IGV * sales_economics + route.price_premium_IGV * sales_premium, 2)
+
+
+ # Diccionario de tickets vendidos
+  sales_and_incomes = {
+    "sales_economics": sales_economics,
+    "sales_premium": sales_premium,
+    "sales_total": sales,
+    "income_economics_sales": income_economics_sales,
+    "income_premium_sales": income_premium_sales,
+    "income_total": income_total,
+    "IGV_total": IGV_total
+  }
+  
+  return sales_and_incomes
