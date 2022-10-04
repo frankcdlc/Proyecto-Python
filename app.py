@@ -134,3 +134,54 @@ def create_sales_and_incomes_tickets(route: Route):
   }
   
   return sales_and_incomes
+
+def main():
+    # Función principal del modulo
+    total_sales_tickets = 0
+    total_income_sales_economics: float = 0
+    total_income_sales_premium: float = 0
+    IGV_total: float = 0
+    route_with_seats_sales: List = []
+
+    routes: List[Route] = create_list_routes()
+    for k, route in enumerate(routes):
+        sales_tickets: List = create_sales_and_incomes_tickets(route)
+        # Número total de tickets vendidos en todos los vuelos
+        total_sales_tickets += sales_tickets["sales_total"]
+        total_income_sales_economics += float(round(sales_tickets["income_economics_sales"],2))
+        total_income_sales_premium += sales_tickets["income_premium_sales"]
+        IGV_total += sales_tickets["IGV_total"]
+        avg_economic_price:float = round((total_income_sales_economics / sales_tickets["sales_economics"]) / len(routes),2)  
+        avg_premium_price: float = round((total_income_sales_premium / sales_tickets["sales_premium"]) / len(routes), 2)
+
+        route_with_seats_sales.append(sales_tickets["sales_total"])
+        route_with_seats_sales.sort()
+
+
+
+
+    print('-'*20)
+    # ¿Cuál es el total de pasajes vendidos entre todos los vuelos?
+    print('Total de pasajes vendidos entre todos los vuelos: ', total_sales_tickets)
+    # ¿Cuál es el total de ingresos por la venta de pasajes económicos?
+    print('Total de ingresos por venta de pasajes económicos: ', total_income_sales_economics)
+    # ¿Cuál es el total de ingresos por la venta de pasajes premium?
+    print('Total de ingresos por venta de pasajes premium: ', total_income_sales_premium)
+    # ¿Cuál es el importe total de IGV cobrado?
+    print('El costo total de IGV cobrado: ', IGV_total)
+    # ¿Cuál es el valor promedio de un pasaje económico?
+    print('Valor promedio de pasaje economico: ', avg_economic_price)
+    # ¿Cuál es el valor promedio de un pasaje premium?
+    print("Valor promedio de pasaje premium: ", avg_premium_price)
+    # ¿Cuál fue el vuelo con la mayor cantidad de pasajeros?
+    print("Vuelo con mayor cantidad de pasasjeros:", route_with_seats_sales[-1])
+    # ¿Cuál fue el vuelo con la menor cantidad de pasajeros?
+    print("Vuelo con menor cantidad de pasajeros", route_with_seats_sales[0])
+    # ¿Cuáles son los tres primeros vuelos que obtuvieron los mayores ingresos por la venta de asientos?
+    
+    # ¿Cuál fue el avión que transportó la mayor cantidad de pasajeros?
+        
+
+
+if __name__ == "__main__":
+    main()
