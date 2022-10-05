@@ -146,12 +146,21 @@ def main():
     routes: List[Route] = create_list_routes()
     for k, route in enumerate(routes):
         sales_tickets: List = create_sales_and_incomes_tickets(route)
+        # Número de tickets vendidos por vuelo
+        sales_tickets_by_route = sales_tickets["sales_total"]
         # Número total de tickets vendidos en todos los vuelos
         total_sales_tickets += sales_tickets["sales_total"]
+        # Ingresos totales por venta de asientos económicos
         total_income_sales_economics += float(round(sales_tickets["income_economics_sales"],2))
+        # Ingresos totales por venta de asientos premium
         total_income_sales_premium += sales_tickets["income_premium_sales"]
+        # Ingresos totales por vuelo
+        total_income = total_income_sales_economics +  total_income_sales_premium
+        # Costo del IGV total
         IGV_total += sales_tickets["IGV_total"]
+        # Precio promedio de los asientos económicos en todos los vuelos
         avg_economic_price:float = round((total_income_sales_economics / sales_tickets["sales_economics"]) / len(routes),2)  
+        # Precio promedio de los asientos premium en todos los vuelos
         avg_premium_price: float = round((total_income_sales_premium / sales_tickets["sales_premium"]) / len(routes), 2)
 
         route_with_seats_sales.append(sales_tickets["sales_total"])
