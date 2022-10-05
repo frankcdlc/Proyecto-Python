@@ -142,6 +142,8 @@ def main():
     total_income_sales_premium: float = 0
     IGV_total: float = 0
     route_with_seats_sales: List = []
+    seats_by_routes: List = []
+    first_three_incomes: List = []
 
     routes: List[Route] = create_list_routes()
     for k, route in enumerate(routes):
