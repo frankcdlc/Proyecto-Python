@@ -179,6 +179,8 @@ def main():
         # Tres primeros vuelos con mayores ingresos
         sorted_income_sales: Dict[str, Route] = sorted(seats_by_routes, key=lambda x: x['total_income'], reverse=True)
 
+    for flight in sorted_income_sales:
+            first_three_incomes.append(flight['route'])
 
 
     print('-'*20)
