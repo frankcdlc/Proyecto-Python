@@ -165,9 +165,19 @@ def main():
         # Precio promedio de los asientos premium en todos los vuelos
         avg_premium_price: float = round((total_income_sales_premium / sales_tickets["sales_premium"]) / len(routes), 2)
 
-        route_with_seats_sales.append(sales_tickets["sales_total"])
-        route_with_seats_sales.sort()
+        # Lista de objetos de asientos e ingresos
+        seats_by_routes.append({
+            "route": route,
+            "total_sales_tickets": sales_tickets_by_route,
+            "total_income": total_income
+        })
 
+        max_sales_tickets: Dict[str, Route] = max(seats_by_routes, key=lambda x: x["total_sales_tickets"])
+
+        min_sales_tickets: Dict[str, Route] = min(seats_by_routes, key=lambda x: x["total_sales_tickets"])
+
+        # Tres primeros vuelos con mayores ingresos
+        sorted_income_sales: Dict[str, Route] = sorted(seats_by_routes, key=lambda x: x['total_income'], reverse=True)
 
 
 
