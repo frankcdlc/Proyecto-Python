@@ -1,3 +1,4 @@
+from distutils import filelist
 from typing import List, Dict
 from model.Route import Route
 
@@ -197,13 +198,12 @@ def main():
     # ¿Cuál es el valor promedio de un pasaje premium?
     print("Valor promedio de pasaje premium: ", avg_premium_price)
     # ¿Cuál fue el vuelo con la mayor cantidad de pasajeros?
-    print("Vuelo con mayor cantidad de pasasjeros:", route_with_seats_sales[-1])
+    print("Vuelo con mayor cantidad de pasasjeros:", max_sales_tickets['total_sales_tickets'])
     # ¿Cuál fue el vuelo con la menor cantidad de pasajeros?
-    print("Vuelo con menor cantidad de pasajeros", route_with_seats_sales[0])
+    print("Vuelo con menor cantidad de pasajeros", min_sales_tickets['total_sales_tickets'])
     # ¿Cuáles son los tres primeros vuelos que obtuvieron los mayores ingresos por la venta de asientos?
-    
+    print("Los tres primeros vuelos con mayores ingresos", first_three_incomes[0], first_three_incomes[1], first_three_incomes[2])
     # ¿Cuál fue el avión que transportó la mayor cantidad de pasajeros?
-        
 
 
 if __name__ == "__main__":
